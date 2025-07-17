@@ -1,0 +1,67 @@
+<mat-dialog-content class="mat-typography">
+    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white">
+        <div class="px-4 py-4">
+            <form [formGroup]="form" #frmClient="ngForm">
+                <div>
+                    <mat-form-field class="input">
+                        <mat-label># Documento</mat-label>
+                        <input matInput formControlName="documento" maxlength="20" minlength="5" [readonly]="edicion">
+                    </mat-form-field>
+                </div>
+                <mat-form-field class="input w-full">
+                    <mat-label>Nombres</mat-label>
+                    <input matInput formControlName="nombre" maxlength="50" minlength="5">
+                </mat-form-field>
+                <br>
+                <mat-form-field class="input w-full">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput formControlName="apellidos" maxlength="70" minlength="5">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Fecha de nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento">
+                    <mat-hint>DD-MM-YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Ciudad</mat-label>
+                    <input type="text" placeholder="Escoge una" aria-label="Ciudad" matInput formControlName="ciudad"
+                        [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{ option }}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="input w-full">
+                    <mat-label>Correo</mat-label>
+                    <input matInput formControlName="correo" maxlength="150">
+                </mat-form-field>
+                <br>
+                <mat-form-field class="input w-full">
+                    <mat-label>Telefono</mat-label>
+                    <input matInput formControlName="telefono" maxlength="20">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Seleccione el ocupación</mat-label>
+                    <mat-select formControlName="ocupacion">
+                        <mat-label>{{genero}}</mat-label>
+                        <mat-option value="EMPLOYEE">Empleado</mat-option>
+                        <mat-option value="INDEPENDENT">Independiente</mat-option>
+                        <mat-option value="PENSIONER">Pensionado</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br>
+            </form>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-button [disabled]="frmClient.invalid" (click)="guardar()">Guardar</button>
+</mat-dialog-actions>

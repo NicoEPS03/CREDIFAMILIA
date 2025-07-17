@@ -1,0 +1,19 @@
+.example-form-field {
+    width: 200px;
+  }
+  .example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+  .input{
+    width: 100%;
+  }
+
+  .a {
+    float: left;
+    padding: 10px;
+  }
+.b {
+    float: right;
+    padding: 10px;
+}
